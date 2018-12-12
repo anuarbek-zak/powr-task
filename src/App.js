@@ -19,22 +19,28 @@ class App extends Component {
     }
 
     build(){
-        this.props.store.rootContainer = JSON.parse(this.state.textForBuild);
-        console.log(toJS(this.props.store.rootContainer));
-    }
+      try{
+          let containerObj = JSON.parse(this.state.textForBuild);
+          if(containerObj.items){
+              this.props.store.rootContainer = containerObj;
+          }
+      }catch (e) {
+          console.log('please follow pattern')
+        }
+      }
 
   render() {
     return (
         <div className="App">
             <div>
-                <p>1.</p>
-                <Container addItem={this.props.store.addItem} items={this.props.store.rootContainer.items}/>
+                <p>1.(press "ctr+x" to delete selected box)</p>
+                <Container items={this.props.store.rootContainer.items} store={this.props.store}/>
             </div>
             <div>
                 <p>2</p>
                 <button onClick={()=>this.build()}>Build</button>
                 <br/>
-                <textarea onChange={e=> this.setState({'textForBuild': e.target.value})} cols="30" value={this.state.textForBuild} rows="10"></textarea>
+                <textarea placeholder="Example: {type:'container', items:[]}" onChange={e=> this.setState({'textForBuild': e.target.value})} cols="30" value={this.state.textForBuild} rows="10"></textarea>
             </div>
             <div>
                 <p>3.</p>
