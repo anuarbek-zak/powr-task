@@ -1,39 +1,23 @@
-import { observable, computed, action, autorun } from 'mobx';
+import { observable, action } from 'mobx';
 
 class Store {
     @observable rootContainer;
 
     constructor() {
         this.rootContainer =
-            {type:'container',
-                items:[
-                    {type:'container',
-                        items:[
-                            {type:'box', color:'green'},
-                            {type:'container', items:[
-                                    {type:'box',color:'blue'}
-                                ]},
-                        ]},
-                    {type:'box'},
-                    {type:'box', color:'red'}
-                ]}
-        ;
+            {type:'container', items:[]};
     }
 
-    @computed get isOpenLeftPanel() {
-        return this.show;
-    }
-
-    @action('toggle left panel')
-    addItem() {
-        this.rootContainer.items[0].push({type:'box', color:'yellow'})
+    @action
+    addItem(items, type){
+        let item = {type};
+        if(type==='container') item.items = [];
+        items.push(item);
     }
 }
 
 const store = new Store();
 
-autorun(() => {
-    console.log(this.rootContainer);
-});
-
 export default store;
+
+

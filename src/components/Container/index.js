@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import './index.css';
 import Box from '../Box/';
+import {observer} from "mobx-react/index";
 
+
+@observer
 class Container extends Component {
+
     render() {
-        console.log(this.props);
+        console.log(`Container re-rendered`);
+
         return (
             <div className="container">
                 {
@@ -12,12 +17,18 @@ class Container extends Component {
                         if(elem.type==='box'){
                             return <Box color={elem.color} />
                         } else {
-                            return <Container index={this.props.index+1}  addItem={this.props.addItem}  items={elem.items} />
+                            return <Container addItem={this.props.addItem} items={elem.items} />
                         }
                         })
                 }
-                <button onClick={() => this.props.addItem(this.props.index)}>Add</button>
 
+                <div className="buttons-container">
+                    <div className="buttons">
+                        <button onClick={() => this.props.addItem(this.props.items,'box')}>Box</button>
+                        <button onClick={() => this.props.addItem(this.props.items,'container')}>Container</button>
+                    </div>
+                    Add
+                </div>
             </div>
         );
     }

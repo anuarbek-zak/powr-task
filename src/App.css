@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  display: table;
 }
 
 .App-logo {
@@ -29,4 +30,37 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.buttons-container{
+  background-color: transparent;
+  padding: 10px 20px;
+  text-align: center;
+  border: 1px solid black;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+}
+
+.buttons-container:hover .buttons,
+.buttons:hover{
+  display: flex;
+}
+
+.buttons{
+  display: none;
+  position: absolute;
+  bottom: 100%;
+  left: 0px;
+  width: 130px;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.createdJSON{
+  max-width: 500px;
+
 }
