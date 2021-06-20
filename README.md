@@ -1,3 +1,5 @@
+Test interview homework from POWR.
+
 Link https://agitated-clarke-3b21e9.netlify.com/
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
